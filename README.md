@@ -1,26 +1,23 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Electronic library
 
-Things you may want to cover:
+## Description:
+This project emulates a classic library with books. The database contains two tables: one for users and one for books. Each book can be taken by one user.
 
-* Ruby version
+## User Capabilities:
+- Take a book
+- Return a book
 
-* System dependencies
+## The Book table contains an array of books with the following attributes:
+  - Name of the book
+  - ID
+  - Author
+  - Text
+  - Boolean flag isTaken.
 
-* Configuration
+### If isTaken is true, other users cannot take the book until the user who took the book returns it. Each user can take up to two books.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# rails_e_lib
-# rails_e_lib
+## Stack
+- Language: Ruby
+- Database: PostgreSQL
+- Framework: Ruby on Rails
