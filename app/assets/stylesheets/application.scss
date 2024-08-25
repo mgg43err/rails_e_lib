@@ -1,0 +1,47 @@
+@import 'bootstrap';
+
+.field_with_errors {
+  .form-control {
+    border-color: $red;
+  }
+  label {
+    color: $red;
+  }
+} 
+// Custom high-contrast theme
+$primary: #0000FF;  // Blue
+$secondary: #FFA500;  // Orange
+$danger: #FF0000;  // Red
+$light: #FFFFFF;  // White
+$dark: #000000;  // Black
+
+// Override Bootstrap's theme
+@import 'bootstrap/scss/bootstrap';
+
+// Additional custom styles
+body {
+  background-color: $dark;
+  color: $light;
+}
+
+.btn-primary {
+  @include button-variant($primary, darken($primary, 10%));
+}
+
+.btn-secondary {
+  @include button-variant($secondary, darken($secondary, 10%));
+}
+
+.btn-danger {
+  @include button-variant($danger, darken($danger, 10%));
+}
+
+.card {
+  background-color: lighten($dark, 10%);
+  border-color: $light;
+}
+
+.form-control {
+  background-color: $light;
+  color: $dark;
+}

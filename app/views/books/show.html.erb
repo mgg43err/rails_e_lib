@@ -1,0 +1,18 @@
+<h1 class="mb-4"><%= @book.title %></h1>
+
+<time datetime="<%= @book.formatted_created_at %>">
+  <%= @book.formatted_created_at %>
+</time>
+
+<p class="lead my-3">
+  <%= @book.body %>
+</p>
+
+<% if @book.is_taken %>
+  <%= button_to 'Return Book', return_book_path(@book), method: :post, class: 'btn btn-warning' %>
+<% else %>
+  <%= button_to 'Take Book', take_book_path(@book), method: :post, class: 'btn btn-success' %>
+<% end %>
+
+<%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-secondary' %> |
+<%= link_to 'Back', books_path, class: 'btn btn-primary' %>
