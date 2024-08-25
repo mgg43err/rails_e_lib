@@ -15,9 +15,11 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    @book.is_taken = false  # Ensure new books are not taken by default
     if @book.save
-      redirect_to @book, notice: 'Book was successfully created.'
+      redirect_to books_path, notice: 'Book was successfully created.'
     else
+      puts @book.errors.full_messages # For debugging
       render :new
     end
   end
@@ -63,6 +65,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :body, :is_taken)
+    params.require(:book).permit(:title, :author, :body, :is_taken)
   end
 end

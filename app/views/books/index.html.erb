@@ -2,23 +2,31 @@
 
 <%= link_to 'New book', new_book_path, class: 'btn btn-primary btn-lg' %>
 
-<% @books.each do |book| %>
-  <article class="card mt-3">
-    <div class="card-body">
-      <h4><%= book.title %></h4>
+<% if @books.any? %>
+  <% @books.each do |book| %>
+    <article class="card mt-3">
+      <div class="card-body">
+        <h4><%= book.title %></h4>
+        <p>ID: <%= book.id %></p>
+        <p>Is Taken: <%= book.is_taken %></p>
 
-      <section class="card-text">
-        <time datetime="<%= book.formatted_created_at %>">
-          <small><%= book.formatted_created_at %></small>
-        </time>
+        <section class="card-text">
+          <time datetime="<%= book.formatted_created_at %>">
+            <small><%= book.formatted_created_at %></small>
+          </time>
 
-        <p class="my-2">
-          <%= book.body %>
-        </p>
-      </section>
+          <p class="my-2">
+            <%= book.body %>
+          </p>
+        </section>
 
-      <%= link_to 'Show', book_path(book), class: 'btn btn-primary' %> 
-      <%= button_to 'Take Book', take_book_path(book), method: :post, class: 'btn btn-success' if !book.is_taken %>
-    </div>
-  </article>
+        <%= link_to 'Show', book_path(book), class: 'btn btn-primary' %> 
+        <%= button_to 'Take Book', take_book_path(book), method: :post, class: 'btn btn-success' if !book.is_taken %>
+      </div>
+    </article>
+  <% end %>
+<% else %>
+  <p class="mt-3">There are no available books at the moment.</p>
+  <p>Total books in database: <%= Book.count %></p>
+  <p>Books marked as available: <%= Book.where(is_taken: [false, nil]).count %></p>
 <% end %>

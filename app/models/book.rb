@@ -1,6 +1,7 @@
 class Book < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
+  validates :author, presence: true
 
   scope :available, -> { where(is_taken: [false, nil]) }
 
